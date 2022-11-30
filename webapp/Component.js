@@ -10,7 +10,6 @@ sap.ui.define(
 
     return UIComponent.extend("myapp.chatapp.Component", {
       metadata: {
-        // it allows component, views, router to be handles asynchronously
         manifest: "json",
       },
       init: function () {
@@ -22,7 +21,6 @@ sap.ui.define(
         this.setModel(oLayoutModel);
 
         //initialize the router based on descriptor config
-        //it creates the view based on the url/hash defined
         var oRouter = this.getRouter();
         oRouter.attachBeforeRouteMatched(this._onBeforeRouteMatched, this);
         oRouter.initialize();
@@ -48,19 +46,16 @@ sap.ui.define(
           var allMessages = concat.reduce((a, b) => [...a, ...b], []);
           allMessages.sort((a, b) => (a.date > b.date ? -1 : 1));
 
-          //FILTER OUT == TAKE AWAY the undefined objects
-          //only want the NOT undefined
-          var filteredMessages = allMessages.filter((x) => x !== undefined);
+          //FILTER OUT the undefined objects 
+          var filteredMessages = allMessages.filter((msg) => msg !== undefined);
 
           obj.messages = filteredMessages;
           return obj;
         });
 
-        //console.log(aConversations);
         //set the new model to the view
         var oConvModel = new JSONModel({ conversations: aConversations });
         this.setModel(oConvModel, "convSet");
-        // console.log(oConvModel)
       },
 
       _onBeforeRouteMatched: function (oEvent) {

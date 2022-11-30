@@ -37,23 +37,6 @@
 									id="idMessagesList"
 									noDataText=""
 									showUnread="false"
-								>
-									<!-- <m:FeedListItem
-										id="feedlist"
-										activeIcon=""
-										icon=""
-										info=""
-										sender=""
-										showIcon="true"
-										timestamp="{convSet>date}"
-										text="{convSet>text}"
-									/> -->
-								</m:List>
-								<m:FeedInput
-									icon=""
-									placeholder="Type something.."
-									value=""
-									post=".onSent"
 								/>
 							</blocks>
 						</ObjectPageSubSection>
