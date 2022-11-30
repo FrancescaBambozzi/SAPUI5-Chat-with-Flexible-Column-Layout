@@ -1,0 +1,12 @@
+{
+  "name": "myapp.chatapp",
+  "version": "1.0.0",
+  "description": "SAPUI5: Flexible Column Layout",
+  "scripts": {
+    "start": "ui5 serve",
+    "build": "ui5 build"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^2.0.0"
+  }
+}

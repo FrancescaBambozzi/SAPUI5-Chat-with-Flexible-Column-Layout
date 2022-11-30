@@ -1,0 +1,102 @@
+{
+  "_version": "1.48.0",
+  "sap.app": {
+    "id": "myapp.chatapp",
+    "type": "application",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "myapp.chatapp.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "minUI5Version": "1.98.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.f": {},
+        "sap.uxap": {}
+      }
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "myapp.chatapp.i18n.i18n"
+        }
+      },
+      "chatsSetModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "./model/mockdata/chatsSet.json",
+        "preload": true
+      },
+      "sentMessagesModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "./model/mockdata/SentMessagesSet.json",
+        "preload": true
+      },
+      "receivedMessagesModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "./model/mockdata/ReceivedMessagesSet.json",
+        "preload": true
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "type": "View",
+        "viewType": "XML",
+        "path": "myapp.chatapp.view",
+        "controlId": "app",
+        "transition": "slide",
+        "bypassed": {},
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": ":layout:",
+          "name": "master",
+          "target": ["master", "detail"]
+        },
+        {
+          "pattern": "detail/{contact}/{layout}",
+          "name": "detail",
+          "target": ["master", "detail"]
+        }
+      ],
+      "targets": {
+        "master": {
+          "name": "Master",
+          "controlAggregation": "beginColumnPages"
+        },
+        "detail": {
+          "name": "Detail",
+          "controlAggregation": "midColumnPages"
+        }
+      }
+    },
+    "config": {
+      "fullWidth": true
+    }
+  }
+}

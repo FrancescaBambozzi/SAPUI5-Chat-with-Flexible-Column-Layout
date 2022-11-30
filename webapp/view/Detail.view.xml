@@ -1,0 +1,99 @@
+<mvc:View
+	controllerName="myapp.chatapp.controller.Detail"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+>
+	<m:Page
+		showHeader="true"
+		showNavButton="true"
+		navButtonPress=".navBack"
+	>
+		<ObjectPageLayout
+			alwaysShowContentHeader="true"
+			isChildPage="true"
+		>
+			<headerTitle>
+				<ObjectPageHeader objectTitle="{convSet>contactName}"/>
+			</headerTitle>
+			<headerContent>
+				<m:Label text="Active User"/>
+			</headerContent>
+			<sections>
+				<ObjectPageSection
+					showTitle="false"
+					titleUppercase="true"
+				>
+					<subSections>
+						<ObjectPageSubSection
+							mode="Collapsed"
+							showTitle="true"
+							titleUppercase="false"
+						>
+							<blocks>
+								<m:List
+									id="idMessagesList"
+									noDataText=""
+									showUnread="false"
+								>
+									<!-- <m:FeedListItem
+										id="feedlist"
+										activeIcon=""
+										icon=""
+										info=""
+										sender=""
+										showIcon="true"
+										timestamp="{convSet>date}"
+										text="{convSet>text}"
+									/> -->
+								</m:List>
+								<m:FeedInput
+									ariaLabelForPicture=""
+									icon=""
+									placeholder="Post something here"
+									rows="2"
+									value=""
+									post=".onSent"
+								/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+	</m:Page>
+</mvc:View>
+<!-- <m:List
+	id="idMessagesList"
+	noDataText=""
+	showUnread="false"
+	items="{
+		path: 'convSet>messages',
+		sorter: {
+			path: 'date',
+			descending: false,
+			group: true
+		}
+	}"
+>
+	<m:FeedListItem
+		id="feedlist"
+		activeIcon=""
+		icon=""
+		info=""
+		sender=""
+		showIcon="true"
+		timestamp="{convSet>date}"
+		text="{convSet>text}"
+	/>
+</m:List>
+<m:FeedInput
+	ariaLabelForPicture=""
+	icon=""
+	placeholder="Post something here"
+	rows="2"
+	value=""
+	post=".onSent"
+/> -->
