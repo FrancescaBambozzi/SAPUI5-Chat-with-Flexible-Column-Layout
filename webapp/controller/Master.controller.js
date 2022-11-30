@@ -37,7 +37,7 @@ sap.ui.define(
 
       onPressNavTo: function (oEvent) {
         //get the item pressed
-        var oItem = oEvent.getSource(); //ObjectListItem
+        var oItem = oEvent.getSource(); 
 
         // 1. navigate to the route with name "detail"
         // 2. get the'contactPath' and then the nav params "contact" (as defined in manifest)

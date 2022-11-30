@@ -14,9 +14,8 @@ sap.ui.define(
         var sRouteName = oEvent.getParameter("name"),
           oArguments = oEvent.getParameter("arguments");
 
-        // Save the current route name
         this.currentRouteName = sRouteName;
-        this.currentContact = oArguments.contact; //I set the name of the argument in the manifest route param
+        this.currentContact = oArguments.contact; //name of the argument in the manifest route param
       },
 
       onStateChanged: function (oEvent) {

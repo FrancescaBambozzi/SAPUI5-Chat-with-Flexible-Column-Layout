@@ -50,10 +50,8 @@
 									/> -->
 								</m:List>
 								<m:FeedInput
-									ariaLabelForPicture=""
 									icon=""
-									placeholder="Post something here"
-									rows="2"
+									placeholder="Type something.."
 									value=""
 									post=".onSent"
 								/>

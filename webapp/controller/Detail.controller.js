@@ -25,33 +25,27 @@ sap.ui.define(
       },
 
       _onObjectMatched: function (oEvent) {
-        //bindElement creates the bind context for the view and
-        //for the control connected to the fields of the model 
+       
         //BIND the table in the detail view to reflect the currently selected CONTACT from the master view.
         this._contact = oEvent.getParameter("arguments").contact;
-        // console.log(this._contact);
         this.getView().bindElement({
           path: "/conversations/" + this._contact,
           model: "convSet",
         });
 
         var oBindingContext = this.getView().getBindingContext("convSet");
-        //console.log(oBindingContext);
 
         var oObject = oBindingContext.getObject();
-        //console.log(oObject);
 
         var aMessages = oObject.messages;
         //USE SORTER ON THE LIST INSTEAD
         aMessages.sort((a, b) => (a.date > b.date ? 1 : -1));
-        //console.log(aMessages);
 
         var oModel = new JSONModel({ messages: aMessages });
-        //console.log(oModel);
 
         var oList = this.getView().byId("idMessagesList");
-        // console.log(oList);
 
+        //Create the list dynamically to apply different styles
         var oFeedListItem = new FeedListItem({
           timestamp: "{date}",
           text: "{text}",
@@ -67,7 +61,6 @@ sap.ui.define(
       navBack: function () {
         //history is a routing dependency
         var oHistory = History.getInstance();
-        //get the previous hash/ url as string from the nav history
         var sPreviousHash = oHistory.getPreviousHash();
 
         //if a nav happened before go back to the -1 hash
