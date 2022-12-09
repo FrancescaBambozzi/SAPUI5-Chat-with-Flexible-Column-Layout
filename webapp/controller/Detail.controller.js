@@ -49,6 +49,7 @@ sap.ui.define(
         var oFeedListItem = new FeedListItem({
           timestamp: "{date}",
           text: "{text}",
+          showIcon: false
         });
 
         oList.bindAggregation("items", {

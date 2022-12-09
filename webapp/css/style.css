@@ -6,3 +6,7 @@
 .received{
     background-color: aliceblue;
 }
+
+.listItem {
+    padding: 30px;
+}

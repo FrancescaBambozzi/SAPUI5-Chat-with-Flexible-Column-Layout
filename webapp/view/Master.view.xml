@@ -20,7 +20,32 @@
 						width="17rem"
 					/>
 				</OverflowToolbar>
-				<Table
+				<List
+					id="listId"
+					headerText="Active Users"
+					items="{
+						path: '/conversations',
+						sorter: {
+							path: 'messages/0/date',
+							descending: true
+						}
+					}"
+				>
+					<items>
+						<StandardListItem
+							class="listItem"
+							type="Navigation"
+							press=".onPressNavTo"
+							title="{contactName}"
+							description="{=${messages}.length > 1 ? ${messages/0/text} : '' }"
+						>
+							<avatar>
+								<Avatar src="{photo}"/>
+							</avatar>
+						</StandardListItem>
+					</items>
+				</List>
+				<!-- <Table
 					id="listId"
 					inset="false"
 					items="{
@@ -52,7 +77,7 @@
 							</cells>
 						</ColumnListItem>
 					</items>
-				</Table>
+				</Table> -->
 			</VBox>
 		</f:content>
 	</f:DynamicPage>

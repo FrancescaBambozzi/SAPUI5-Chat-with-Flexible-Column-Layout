@@ -2,8 +2,6 @@
 	controllerName="myapp.chatapp.controller.Detail"
 	xmlns="sap.uxap"
 	xmlns:m="sap.m"
-	xmlns:f="sap.f"
-	xmlns:form="sap.ui.layout.form"
 	xmlns:mvc="sap.ui.core.mvc"
 >
 	<m:Page
@@ -16,11 +14,15 @@
 			isChildPage="true"
 		>
 			<headerTitle>
-				<ObjectPageHeader objectTitle="{convSet>contactName}"/>
+				<ObjectPageDynamicHeaderTitle>
+					<expandedHeading>
+						<m:HBox>
+							<m:Avatar src="{convSet>photo}" class="sapUiTinyMarginEnd"/>
+							<m:Title text="{convSet>contactName}" wrapping="true"/>
+						</m:HBox>
+					</expandedHeading>
+				</ObjectPageDynamicHeaderTitle>
 			</headerTitle>
-			<headerContent>
-				<m:Label text="Active User"/>
-			</headerContent>
 			<sections>
 				<ObjectPageSection
 					showTitle="false"
