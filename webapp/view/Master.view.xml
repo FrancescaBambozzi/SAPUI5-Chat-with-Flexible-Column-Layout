@@ -4,17 +4,20 @@
 	xmlns:f="sap.f"
 	xmlns:mvc="sap.ui.core.mvc"
 >
-	<f:DynamicPage>
+	<f:DynamicPage class="sapUiResponsiveContentPadding">
 		<f:title>
-			<f:DynamicPageTitle>
+			<f:DynamicPageTitle class="titleContainer">
 				<f:heading>
-					<Title text="Teams Chat"/>
+					<Title
+						text="{i18n>title}"
+						class="title"
+					/>
 				</f:heading>
 			</f:DynamicPageTitle>
 		</f:title>
 		<f:content>
 			<VBox fitContainer="true">
-				<OverflowToolbar class="sapFDynamicPageAlignContent">
+				<OverflowToolbar class="toolbarCSS">
 					<SearchField
 						search=".onSearch"
 						width="17rem"
@@ -22,7 +25,6 @@
 				</OverflowToolbar>
 				<List
 					id="listId"
-					headerText="Active Users"
 					items="{
 						path: '/conversations',
 						sorter: {
@@ -45,39 +47,6 @@
 						</StandardListItem>
 					</items>
 				</List>
-				<!-- <Table
-					id="listId"
-					inset="false"
-					items="{
-						path: '/conversations',
-						sorter: {
-							path: 'messages/0/date',
-							descending: true,
-							group: true
-						}
-					}"
-					class="sapFDynamicPageAlignContent"
-					width="auto"
-				>
-					<columns>
-						<Column width="12em">
-							<Text text="Contacts"/>
-						</Column>
-					</columns>
-					<items>
-						<ColumnListItem
-							type="Navigation"
-							press=".onPressNavTo"
-						>
-							<cells>
-								<ObjectIdentifier
-									title="{contactName}"
-									text="{=${messages}.length > 1 ? ${messages/0/text} : '' }"
-								/>
-							</cells>
-						</ColumnListItem>
-					</items>
-				</Table> -->
 			</VBox>
 		</f:content>
 	</f:DynamicPage>

@@ -15,38 +15,43 @@
 		>
 			<headerTitle>
 				<ObjectPageDynamicHeaderTitle>
-					<expandedHeading>
+					<heading>
 						<m:HBox>
-							<m:Avatar src="{convSet>photo}" class="sapUiTinyMarginEnd"/>
-							<m:Title text="{convSet>contactName}" wrapping="true"/>
+							<m:Avatar
+								src="{convSet>photo}"
+							/>
+							<m:Title
+								text="{convSet>contactName}"
+								class="sapUiTinyMargin"
+							/>
 						</m:HBox>
-					</expandedHeading>
-				</ObjectPageDynamicHeaderTitle>
-			</headerTitle>
-			<sections>
-				<ObjectPageSection
-					showTitle="false"
-					titleUppercase="true"
-				>
-					<subSections>
-						<ObjectPageSubSection
-							mode="Collapsed"
-							showTitle="true"
-							titleUppercase="false"
-						>
-							<blocks>
-								<m:List
-									id="idMessagesList"
-									noDataText=""
-									showUnread="false"
-								/>
-							</blocks>
-						</ObjectPageSubSection>
-					</subSections>
-				</ObjectPageSection>
-			</sections>
-		</ObjectPageLayout>
-	</m:Page>
+					</heading>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<sections>
+			<ObjectPageSection
+				showTitle="false"
+				titleUppercase="true"
+			>
+				<subSections>
+					<ObjectPageSubSection
+						mode="Collapsed"
+						showTitle="true"
+						titleUppercase="false"
+					>
+						<blocks>
+							<m:List
+								id="idMessagesList"
+								noDataText=""
+								showUnread="false"
+							/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</m:Page>
 </mvc:View>
 <!-- <m:List
 	id="idMessagesList"

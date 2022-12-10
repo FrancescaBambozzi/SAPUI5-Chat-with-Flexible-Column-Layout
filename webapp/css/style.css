@@ -7,6 +7,19 @@
     background-color: aliceblue;
 }
 
+.titleContainer {
+    align-items: center;
+    background-color: rebeccapurple;
+}
+
+.title {
+    color: aliceblue;
+}
+
 .listItem {
     padding: 30px;
+}
+
+.toolbarCSS {
+    padding-bottom: 5px;
 }
