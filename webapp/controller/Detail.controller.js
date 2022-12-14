@@ -5,8 +5,20 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/FeedListItem",
     "sap/ui/model/Sorter",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
+    "sap/ui/core/format/DateFormat",
   ],
-  function (Controller, History, JSONModel, FeedListItem, Sorter) {
+  function (
+    Controller,
+    History,
+    JSONModel,
+    FeedListItem,
+    Sorter,
+    Filter,
+    FilterOperator,
+    DateFormat
+  ) {
     "use strict";
 
     return Controller.extend("myapp.chatapp.controller.Detail", {
@@ -25,38 +37,63 @@ sap.ui.define(
       },
 
       _onObjectMatched: function (oEvent) {
-       
         //BIND the table in the detail view to reflect the currently selected CONTACT from the master view.
         this._contact = oEvent.getParameter("arguments").contact;
         this.getView().bindElement({
           path: "/conversations/" + this._contact,
           model: "convSet",
+          events: { change: this._onBindingChange.bind(this) },
+        });
+      },
+
+      _onBindingChange: function () {
+        var oView = this.getView(),
+          oElementBinding = oView.getBindingContext("convSet").getObject(),
+          sObjectKey = oElementBinding.phone;
+
+        console.log(oElementBinding);
+        console.log(sObjectKey);
+
+        // Filter the list by key (phone) - only show new comments for view's object
+        var oList = this.byId("idMessagesList");
+        var oBinding = oList.getBinding("items");
+        oBinding.filter(new Filter("phone", FilterOperator.EQ, sObjectKey));
+      },
+
+      onPost: function (oEvent) {
+        //get the contact object bound to the view
+        var oObject = this.getView().getBindingContext("convSet").getObject();
+
+        //get the value of the FeedInput ("comment wrote")
+        var sValue = oEvent.getParameter("value");
+
+        //create date instance
+        // var oFormat = DateFormat.getDateTimeInstance({ style: "short", format: 'dd/MM/YY' });
+        // var sDate = oFormat.format(new Date());
+        var sDate = new Date();
+       
+        //create entry for the new comment 
+        var oEntry = {
+          phone: oObject.phone,
+          text: sValue,
+          date: sDate,
+          type: "Comment",
+        };
+
+        //get convSet model
+        var oModel = this.getView().getModel("convSet");
+        var aConv = oModel.getData().conversations;
+        //store the new comment in Array
+        var aEntries;
+
+        //update the messages arr of each contact with the new entry
+        aConv.map((obj) => {
+          aEntries = obj.messages;
+          aEntries.push(oEntry);
         });
 
-        var oBindingContext = this.getView().getBindingContext("convSet");
-
-        var oObject = oBindingContext.getObject();
-
-        var aMessages = oObject.messages;
-        //USE SORTER ON THE LIST INSTEAD
-        aMessages.sort((a, b) => (a.date > b.date ? 1 : -1));
-
-        var oModel = new JSONModel({ messages: aMessages });
-
-        var oList = this.getView().byId("idMessagesList");
-
-        //Create the list dynamically to apply different styles
-        var oFeedListItem = new FeedListItem({
-          timestamp: "{date}",
-          text: "{text}",
-          showIcon: false
-        });
-
-        oList.bindAggregation("items", {
-          path: "/messages",
-          template: oFeedListItem,
-        });
-        oList.setModel(oModel);
+        //update the data of the model bound to the list
+        oModel.setData({ conversations: aConv });
       },
 
       navBack: function () {

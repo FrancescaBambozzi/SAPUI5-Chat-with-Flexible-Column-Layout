@@ -17,71 +17,59 @@
 				<ObjectPageDynamicHeaderTitle>
 					<heading>
 						<m:HBox>
-							<m:Avatar
-								src="{convSet>photo}"
-							/>
+							<m:Avatar src="{convSet>photo}"/>
 							<m:Title
 								text="{convSet>contactName}"
 								class="sapUiTinyMargin"
 							/>
 						</m:HBox>
 					</heading>
-			</ObjectPageDynamicHeaderTitle>
-		</headerTitle>
-		<sections>
-			<ObjectPageSection
-				showTitle="false"
-				titleUppercase="true"
-			>
-				<subSections>
-					<ObjectPageSubSection
-						mode="Collapsed"
-						showTitle="true"
-						titleUppercase="false"
-					>
-						<blocks>
-							<m:List
-								id="idMessagesList"
-								noDataText=""
-								showUnread="false"
-							/>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>
-		</sections>
-	</ObjectPageLayout>
-</m:Page>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+			<sections>
+				<ObjectPageSection
+					showTitle="false"
+					titleUppercase="true"
+				>
+					<subSections>
+						<ObjectPageSubSection
+							mode="Collapsed"
+							showTitle="true"
+							titleUppercase="false"
+						>
+							<blocks>
+								<m:List
+									id="idMessagesList"
+									noDataText=""
+									showUnread="false"
+									items="{
+										path: 'convSet>messages',
+										sorter: {
+											path: 'date',
+											descending: false,
+											group: true
+										}
+									}"
+								>
+									<m:items>
+										<m:FeedListItem
+											info=""
+											lessLabel=""
+											moreLabel=""
+											sender=""
+											senderActive="true"
+											showIcon="false"
+											text="{convSet>text}"
+											timestamp="{convSet>date}"
+										/>
+									</m:items>
+								</m:List>
+								<m:FeedInput post=".onPost"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+	</m:Page>
 </mvc:View>
-<!-- <m:List
-	id="idMessagesList"
-	noDataText=""
-	showUnread="false"
-	items="{
-		path: 'convSet>messages',
-		sorter: {
-			path: 'date',
-			descending: false,
-			group: true
-		}
-	}"
->
-	<m:FeedListItem
-		id="feedlist"
-		activeIcon=""
-		icon=""
-		info=""
-		sender=""
-		showIcon="true"
-		timestamp="{convSet>date}"
-		text="{convSet>text}"
-	/>
-</m:List>
-<m:FeedInput
-	ariaLabelForPicture=""
-	icon=""
-	placeholder="Post something here"
-	rows="2"
-	value=""
-	post=".onSent"
-/> -->

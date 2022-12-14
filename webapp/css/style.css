@@ -1,9 +1,9 @@
-.sent{
+.sent {
     background-color: blue;
     color: white;
 }
 
-.received{
+.received {
     background-color: aliceblue;
 }
 
@@ -22,4 +22,16 @@
 
 .toolbarCSS {
     padding-bottom: 5px;
+}
+
+
+/* Object Page Layout */
+#__layout0-headerTitle {
+    border-bottom: 1px solid rebeccapurple;
+}
+
+/* Object Page subsection BLOCK style - messages section */
+#__section0-innerGrid {
+    display: flex;
+    flex-flow: column wrap;
 }
